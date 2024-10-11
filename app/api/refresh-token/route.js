@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
-import { refreshSession } from '../../login/requests';
+import { deleteSesssion, refreshSession } from '../../login/requests';
 
 export async function GET(req) {
   return await handleRefreshToken(req);
@@ -44,10 +44,11 @@ async function handleRefreshToken(req) {
 
     return NextResponse.redirect(new URL('/menu', req.nextUrl));
   } catch (error) {
+    await deleteSesssion();
     // console.error('Error refreshing token:', error);
-    return new Response(JSON.stringify({ message: 'Internal Server Error' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    // return new Response(JSON.stringify({ message: 'Internal Server Error' }), {
+    //   status: 500,
+    //   headers: { 'Content-Type': 'application/json' },
+    // });
   }
 }
