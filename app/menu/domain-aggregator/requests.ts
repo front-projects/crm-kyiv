@@ -1,5 +1,8 @@
+'use server';
+
 import axios from 'axios';
 import { InfoForUpdate } from './types';
+import { cookies } from 'next/headers';
 
 const API_URL = 'https://digitalagency.top:6060/api/v1/domain-aggregator';
 
@@ -12,9 +15,16 @@ const API_URL = 'https://digitalagency.top:6060/api/v1/domain-aggregator';
 // }
 
 export const checkDomain = async (domain: string): Promise<boolean> => {
+  const TOKEN = cookies().get('accessToken')?.value;
+
   try {
     const response = await axios.get(
       `${API_URL}/check-domain?domain=${domain}`,
+      {
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+        },
+      },
     );
     // console.log(response);
     if (response.data.SearchResponse.SearchResults[0].Available == 'yes') {
@@ -46,7 +56,13 @@ export const buyDomain = async (domain: string) => {
 };
 
 export const getDomains = async () => {
-  const response = await axios.get(`${API_URL}/get-user-domains`);
+  const TOKEN = cookies().get('accessToken')?.value;
+
+  const response = await axios.get(`${API_URL}/get-user-domains`, {
+    headers: {
+      Authorization: `Bearer ${TOKEN}`,
+    },
+  });
 
   return response.data.ListDomainInfoResponse.MainDomains;
 };

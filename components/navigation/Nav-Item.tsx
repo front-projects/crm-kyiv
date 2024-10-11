@@ -14,7 +14,7 @@ export default function NavItem({
   return (
     <Link
       href={to}
-      className={`${pathname.startsWith(to) ? 'text-red-400 border-red-400' : ''} border-2 rounded-xl p-2 hover:bg-gray-600/50`}
+      className={`${pathname.includes(to) ? 'text-purple-600 border-purple-600' : ''} border-2 rounded-xl p-2 hover:bg-gray-600/50`}
     >
       {children}
     </Link>

@@ -2,10 +2,11 @@
 
 import { useState } from 'react';
 import { checkDomain } from '../requests';
-import Button from '@/components/domain-aggregator/Button';
 import { MagnifyingGlass } from 'react-loader-spinner';
 import LockedInfo from '@/components/domain-aggregator/LockedInfo';
 import FreeInfo from '@/components/domain-aggregator/FreeInfo';
+import { Button } from '@mui/material';
+import TextField from '@mui/material/TextField';
 
 export default function CheckDomain() {
   const [loading, setLoading] = useState(false);
@@ -38,8 +39,11 @@ export default function CheckDomain() {
   };
   return (
     <div className="flex flex-col items-center">
-      <form className="flex gap-4 max-sm:flex-col" onSubmit={checkHandler}>
-        <input
+      <form
+        className="flex gap-4 items-center max-sm:flex-col"
+        onSubmit={checkHandler}
+      >
+        <TextField
           onChange={(e) => {
             if (typeof status !== 'boolean') {
               setStatus(false);
@@ -48,9 +52,43 @@ export default function CheckDomain() {
           }}
           value={domain}
           placeholder="Enter your domain"
-          className="w-[600px] max-sm:w-[90vw] text-center text-black"
+          className="w-[600px] max-sm:w-[90vw] text-center"
+          color="secondary"
+          variant="outlined"
+          sx={{
+            width: '100%',
+            border: 'white',
+            marginTop: '10px',
+            '& .MuiInputBase-input': {
+              color: 'white', // колір тексту
+            },
+            '& .MuiInputLabel-root': {
+              '& fieldset': {
+                borderColor: 'white',
+              },
+              color: 'gray', // колір лейбла
+            },
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'white',
+              },
+              '&:hover fieldset': {
+                borderColor: 'purple',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: 'purple', // колір обводки при фокусі
+              },
+            },
+          }}
         />
-        <Button type="submit">Check</Button>
+        <Button
+          type="submit"
+          variant="contained"
+          color="secondary"
+          sx={{ height: '100%' }}
+        >
+          Check
+        </Button>
       </form>
       {loading && (
         <div className="mt-10">

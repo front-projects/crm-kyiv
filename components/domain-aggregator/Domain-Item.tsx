@@ -1,46 +1,45 @@
 import { useState } from 'react';
 import { convertEpochToDate } from '@/lib/front/formatTime';
-import Button from './Button';
-import { Modal } from './Modal';
-import { updateInfo } from '@/app/domain-aggregator/requests';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { Button } from '@mui/material';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function DomainItem({ domain }: { domain: any }) {
   const searchParams = useSearchParams();
   const show = searchParams.get('show');
   const router = useRouter();
-  const [isEditing, setIsEditing] = useState<boolean>(false);
+  // const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  const [started, setStarted] = useState({
-    sub1: domain.NameServerSettings.SubDomains[0].Subhost,
-    sub2: domain.NameServerSettings.SubDomains[1].Subhost,
-    value1: domain.NameServerSettings.SubDomains[0].Value,
-    value2: domain.NameServerSettings.SubDomains[1].Value,
-    main1: domain.NameServerSettings.SubDomains[0].Value,
-    main2: domain.NameServerSettings.MainDomains[1].Value,
-  });
-  const [updated, setUpdated] = useState(started);
+  // const [started, setStarted] = useState({
+  //   sub1: domain.NameServerSettings.SubDomains[0].Subhost,
+  //   sub2: domain.NameServerSettings.SubDomains[1].Subhost,
+  //   value1: domain.NameServerSettings.SubDomains[0].Value,
+  //   value2: domain.NameServerSettings.SubDomains[1].Value,
+  //   main1: domain.NameServerSettings.SubDomains[0].Value,
+  //   main2: domain.NameServerSettings.MainDomains[1].Value,
+  // });
+  // const [updated, setUpdated] = useState(started);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const submitHandler = async () => {
-    setIsLoading(true);
-    const response = await updateInfo(updated, domain.Name);
-    if (response) {
-      setStarted(updated);
-    } else {
-      alert('Something went wrong');
-    }
-    setIsLoading(false);
-    setIsEditing(false);
-  };
+  // const submitHandler = async () => {
+  //   setIsLoading(true);
+  //   const response = await updateInfo(updated, domain.Name);
+  //   if (response) {
+  //     setStarted(updated);
+  //   } else {
+  //     alert('Something went wrong');
+  //   }
+  //   setIsLoading(false);
+  //   setIsEditing(false);
+  // };
 
-  const cancelEditing = () => {
-    setUpdated(started);
-    setIsEditing(false);
-  };
+  // const cancelEditing = () => {
+  //   setUpdated(started);
+  //   setIsEditing(false);
+  // };
 
+  console.log(domain);
   return (
     <>
       <div className="border-2 p-3 px-10 rounded-[24px] flex gap-4 items-center text-xl cursor-pointer max-w-[95vw] max-sm:flex-col">
@@ -55,11 +54,13 @@ export default function DomainItem({ domain }: { domain: any }) {
           <span className="text-gray-400 text-lg ">Expiration: </span>
           {convertEpochToDate(domain.Expiration)}
         </div>
-        <Link href="/domain-aggregator/my-domains/?show=true">
-          <Button>Show more</Button>
+        <Link href={`/menu/domain-aggregator/my-domains/${domain.Name}`}>
+          <Button variant="contained" color="secondary">
+            Show more
+          </Button>
         </Link>
       </div>
-      {show && (
+      {/* {show && (
         <Modal>
           <div className="min-w-[400px] flex flex-col items-center text-xl max-sm:min-w-[90vw] max-h-[60dvh] overflow-auto py-10 max-sm:py-4">
             <h1 className="font-bold w-full border-b-2 p-2 text-center">
@@ -67,9 +68,6 @@ export default function DomainItem({ domain }: { domain: any }) {
             </h1>
             <h2 className="mt-4">Main domains:</h2>
             <div>
-              {/* {domain.NameServerSettings.MainDomains[0].RecordType} -{' '} */}
-              {/* {isEditing ? }
-            {domain.NameServerSettings.MainDomains[0].Value} */}
               {isEditing ? (
                 <input
                   className="max-w-[200px] m-4"
@@ -175,7 +173,7 @@ export default function DomainItem({ domain }: { domain: any }) {
             </div>
           </div>
         </Modal>
-      )}
+      )} */}
     </>
   );
 }

@@ -4,7 +4,7 @@ import { FaCheck } from 'react-icons/fa';
 import Button from './Button';
 import { useState } from 'react';
 import { Modal } from './Modal';
-import { buyDomain } from '@/app/domain-aggregator/requests';
+import { buyDomain } from '@/app/menu/domain-aggregator/requests';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 
@@ -33,7 +33,7 @@ export default function FreeInfo({ domain }: { domain: string }) {
         </div>
       </div>
 
-      <Link href="/domain-aggregator/check-domain?show=true">
+      <Link href="/menu/domain-aggregator/check-domain?show=true">
         <Button>Buy {domain}</Button>
       </Link>
 

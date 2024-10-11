@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
-import Navigation from '@/components/navigation/Navigation';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -30,13 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased w-screen h-[100dvh]`}
         suppressHydrationWarning={true}
       >
-        <Navigation />
-        <div
-          className="w-screen flex items-center justify-center"
-          style={{ height: 'calc(100dvh - 60px)' }}
-        >
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );

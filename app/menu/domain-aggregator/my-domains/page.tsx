@@ -11,7 +11,6 @@ export default function DomainsList() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getDomains();
-      console.log(data);
       setDomains(data);
     };
 
