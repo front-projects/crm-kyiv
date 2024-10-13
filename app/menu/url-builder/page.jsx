@@ -10,6 +10,7 @@ import { FaCirclePlus } from 'react-icons/fa6';
 import DynamicItem from '../../../components/url-builder/DynamicItem';
 import { FaCopy } from 'react-icons/fa6';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import WrapperUrl from '../../../components/url-builder/WrapperUrl'
 
 export default function UrlBuilderPage() {
   const [domains, setDomains] = useState();
@@ -149,6 +150,10 @@ export default function UrlBuilderPage() {
             )}
           </div>
         </CopyToClipboard>
+        <h3 className="text-gray-600 text-sm mb-[-10px]">
+          Wrapped url:
+        </h3>
+        <WrapperUrl url={GENERATED_URL}/>
       </form>
     </section>
   );
