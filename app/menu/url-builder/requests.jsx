@@ -25,11 +25,12 @@ export const getUrlById = async (id) => {
     const TOKEN = cookies().get('accessToken')?.value;
    
     try{
-        const response = await axios.post(API_URL + '/get-ads-url-by-id?id=' + id, {} , {
+        const response = await axios.get(API_URL + '/get-ads-url-by-id?id=' + id, {
             headers: {
               Authorization: `Bearer ${TOKEN}`,
             },
           },)
+          console.log(response.data)
         return response.data.url;
     }catch{
         return false;

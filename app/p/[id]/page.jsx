@@ -9,7 +9,12 @@ export default function Page(){
     useEffect(()=>{
         const getUrl = async () =>{
            const response = await getUrlById(id);
-           window.location.href = response;
+           if(response){
+               window.location.href = response;
+           }else{
+            window.location.href = "https://www.google.com";
+           }
+
         }
         getUrl();
     }, [])

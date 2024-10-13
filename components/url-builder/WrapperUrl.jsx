@@ -14,6 +14,8 @@ export default function WrapperUrl({url}){
     const [generatedUrl, setGeneratedUrl] = useState('');
     
     const CRM_URL = "https://crm-kyiv-1.vercel.app/p/"
+    // const CRM_URL = "http://localhost:3000/p/"
+    const URL_TO_COPY = CRM_URL+generatedUrl + "?ad_id={{ad.id}}&adset_id={{adset.id}}&campaign_id={{campaign.id}}&ad_name={{ad.name}}&adset_name={{adset.name}}&campaign_name={{campaign.name}}&source={{site_source_name}}&placement={{placement}}"
 
 
     useEffect(()=> setStatus('GENERATE'),[url])
@@ -31,7 +33,6 @@ export default function WrapperUrl({url}){
         
     }
 
-    const URL_TO_COPY = CRM_URL+generatedUrl + "?ad_id={{ad.id}}&adset_id={{adset.id}}&campaign_id={{campaign.id}}&ad_name={{ad.name}}&adset_name={{adset.name}}&campaign_name={{campaign.name}}&source={{site_source_name}}&placement={{placement}}"
     
     return <div className="w-full flex flex-col gap-4 items-center justify-center border-2 rounded-md hover:border-purple-600">
         {status == 'GENERATE' && <Button color="secondary" sx={{width:'100%', paddingY: '24px'}} onClick={()=>submitGenerate()}>Generate wrapped url</Button>}
