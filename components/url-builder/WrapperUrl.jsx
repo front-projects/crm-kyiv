@@ -13,6 +13,9 @@ export default function WrapperUrl({url}){
     const [isCopied,setIsCopied] = useState(false);
     const [generatedUrl, setGeneratedUrl] = useState('');
     
+    const CRM_URL = "https://crm-kyiv-1.vercel.app/p/"
+
+
     useEffect(()=> setStatus('GENERATE'),[url])
 
 
@@ -27,22 +30,24 @@ export default function WrapperUrl({url}){
         }
         
     }
+
+    const URL_TO_COPY = CRM_URL+generatedUrl + "?ad_id={{ad.id}}&adset_id={{adset.id}}&campaign_id={{campaign.id}}&ad_name={{ad.name}}&adset_name={{adset.name}}&campaign_name={{campaign.name}}&source={{site_source_name}}&placement={{placement}}"
     
-    return <div className="w-full flex flex-col gap-4 items-center justify-center border-2 rounded-md">
-        {status == 'GENERATE' && <Button color="secondary" sx={{width:'100%', paddingY: '24px'}} onClick={submitGenerate}>Generate wrapped url</Button>}
+    return <div className="w-full flex flex-col gap-4 items-center justify-center border-2 rounded-md hover:border-purple-600">
+        {status == 'GENERATE' && <Button color="secondary" sx={{width:'100%', paddingY: '24px'}} onClick={()=>submitGenerate()}>Generate wrapped url</Button>}
         {status == 'LOADING' && <Rings color="purple"/>}
         {status == 'ERROR' && <div className="w-full">
                     <h4 className="text-red-600 w-full py-2 text-center">Something went wrong. Try again.</h4>
-                    <Button color="secondary" sx={{width:'100%', paddingY: '24px'}} onClick={submitGenerate}>Generate wrapped url</Button>
+                    <Button color="secondary" sx={{width:'100%', paddingY: '24px'}} onClick={()=> submitGenerate()}>Generate wrapped url</Button>
             </div>}
-            {status == 'COMPLETED' && <CopyToClipboard text={generatedUrl}>
+            {status == 'COMPLETED' && <CopyToClipboard text={URL_TO_COPY}>
                     <div className="p-4 w-full flex items-center justify-between cursor-pointer" onClick={() => {
               setIsCopied(true);
               setTimeout(() => {
                 setIsCopied(false);
               }, 2000);
             }}>
-                        <div>{generatedUrl}</div>
+                        <div>{URL_TO_COPY}</div>
                         {isCopied ? (
               <div>Copied</div>
             ) : (

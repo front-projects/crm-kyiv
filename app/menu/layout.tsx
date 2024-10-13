@@ -16,7 +16,7 @@ export default function RootLayout({
       <Navigation />
       <div
         className="w-screen flex items-center justify-center"
-        style={{ height: 'calc(100dvh - 60px)' }}
+        style={{ minHeight: 'calc(100dvh - 60px)' }}
       >
         {children}
       </div>
