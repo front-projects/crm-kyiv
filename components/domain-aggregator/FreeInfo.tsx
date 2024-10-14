@@ -1,12 +1,12 @@
 'use client';
 
 import { FaCheck } from 'react-icons/fa';
-import Button from './Button';
 import { useState } from 'react';
 import { Modal } from './Modal';
 import { buyDomain } from '@/app/menu/domain-aggregator/requests';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
+import { Button } from '@mui/material';
 
 export default function FreeInfo({ domain }: { domain: string }) {
   const [status, setStatus] = useState('question');
@@ -34,7 +34,7 @@ export default function FreeInfo({ domain }: { domain: string }) {
       </div>
 
       <Link href="/menu/domain-aggregator/check-domain?show=true">
-        <Button>Buy {domain}</Button>
+        <Button variant="contained" color="secondary">Buy {domain}</Button>
       </Link>
 
       {show && (

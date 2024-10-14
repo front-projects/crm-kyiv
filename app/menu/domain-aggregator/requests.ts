@@ -41,9 +41,15 @@ export const checkDomain = async (domain: string): Promise<boolean> => {
 };
 
 export const buyDomain = async (domain: string) => {
+  const TOKEN = cookies().get('accessToken')?.value;
+  
   try {
     const response = await axios.post(
-      `${API_URL}/buy-domain?domain=${domain}$duration=1`,
+      `${API_URL}/buy-domain?domain=${domain}$duration=1`, {
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+        },
+      }
     );
     if (response) {
       return true;

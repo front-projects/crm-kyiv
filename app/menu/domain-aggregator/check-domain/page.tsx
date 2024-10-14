@@ -38,9 +38,9 @@ export default function CheckDomain() {
     }
   };
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col w-full items-center">
       <form
-        className="flex gap-4 items-center max-sm:flex-col"
+        className="flex w-full gap-4 items-center max-sm:flex-col"
         onSubmit={checkHandler}
       >
         <TextField
@@ -52,7 +52,6 @@ export default function CheckDomain() {
           }}
           value={domain}
           placeholder="Enter your domain"
-          className="w-[600px] max-sm:w-[90vw] text-center"
           color="secondary"
           variant="outlined"
           sx={{
@@ -85,7 +84,7 @@ export default function CheckDomain() {
           type="submit"
           variant="contained"
           color="secondary"
-          sx={{ height: '100%' }}
+          sx={{ height: 'max-content' }}
         >
           Check
         </Button>

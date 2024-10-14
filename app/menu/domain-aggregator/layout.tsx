@@ -8,7 +8,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   return (
-    <section className="relative">
+    <section className="relative w-1/2 max-sm:w-[90%]">
       <Link
         className="fixed right-1/4 max-sm:right-4 top-24"
         href={`${pathname == '/menu/domain-aggregator/check-domain' ? '/menu/domain-aggregator/my-domains' : '/menu/domain-aggregator/check-domain'} `}
