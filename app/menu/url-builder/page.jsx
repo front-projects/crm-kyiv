@@ -140,7 +140,7 @@ export default function UrlBuilderPage() {
             }}
             className="w-full p-4 border-2 cursor-pointer hover:border-purple-600 border-gray-400 rounded-md flex items-center justify-between"
           >
-            <div>{GENERATED_URL}</div>
+            <div className='truncate'>{GENERATED_URL}</div>
             {isCopied ? (
               <div>Copied</div>
             ) : (

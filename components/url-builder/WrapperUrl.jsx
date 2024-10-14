@@ -48,7 +48,7 @@ export default function WrapperUrl({url}){
                 setIsCopied(false);
               }, 2000);
             }}>
-                        <div>{URL_TO_COPY}</div>
+                        <div className="truncate">{URL_TO_COPY}</div>
                         {isCopied ? (
               <div>Copied</div>
             ) : (
