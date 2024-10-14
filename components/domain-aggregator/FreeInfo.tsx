@@ -26,7 +26,7 @@ export default function FreeInfo({ domain }: { domain: string }) {
 
   return (
     <>
-      <div className="flex items-center gap-2 mt-10 text-green-600 text-[24px] px-10 text-center mb-4">
+      <div className="flex items-center gap-2 mt-10 text-green-600 text-[24px] px-10 max-sm:px-2 text-center mb-4">
         <p>This domain is available for purchase</p>
         <div>
           <FaCheck />

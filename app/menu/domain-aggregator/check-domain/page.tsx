@@ -7,6 +7,8 @@ import LockedInfo from '@/components/domain-aggregator/LockedInfo';
 import FreeInfo from '@/components/domain-aggregator/FreeInfo';
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
 
 export default function CheckDomain() {
   const [loading, setLoading] = useState(false);
@@ -14,6 +16,7 @@ export default function CheckDomain() {
     false,
   );
   const [domain, setDomain] = useState('');
+  const [saleDomain,setSaleDomain] = useState<string>('.click');
 
   const checkHandler = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -22,7 +25,7 @@ export default function CheckDomain() {
       setStatus(false);
 
       try {
-        const response = await checkDomain(domain);
+        const response = await checkDomain(domain + saleDomain);
         if (typeof response === 'boolean') {
           setStatus(response ? 'free' : 'locked');
         } else {
@@ -39,6 +42,7 @@ export default function CheckDomain() {
   };
   return (
     <div className="flex flex-col w-full items-center">
+      <h1 className='text-xl py-4 text-center'>Search for any domain ending with <span className='text-gray-400'>{saleDomain}</span> TLD</h1>
       <form
         className="flex w-full gap-4 items-center max-sm:flex-col"
         onSubmit={checkHandler}
@@ -54,6 +58,11 @@ export default function CheckDomain() {
           placeholder="Enter your domain"
           color="secondary"
           variant="outlined"
+          onKeyDown={(e) => {
+            if (e.key === '.') {
+              e.preventDefault();
+            }
+          }}
           sx={{
             width: '100%',
             border: 'white',
@@ -79,6 +88,15 @@ export default function CheckDomain() {
               },
             },
           }}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton>
+                  <div className='bg-gray-900/90 text-white rounded-md p-2'>{saleDomain}</div>
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
         />
         <Button
           type="submit"
@@ -94,7 +112,7 @@ export default function CheckDomain() {
           <MagnifyingGlass glassColor="" color="yellow" />
         </div>
       )}
-      {status == 'free' && <FreeInfo domain={domain} />}
+      {status == 'free' && <FreeInfo domain={domain + saleDomain} />}
       {status == 'locked' && <LockedInfo />}
     </div>
   );
