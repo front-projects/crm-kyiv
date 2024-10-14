@@ -9,7 +9,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
       onClick={router.back}
     >
       <div
-        className={`bg-[#242424] border-2 border-white rounded-[24px] p-4 translate-y-20 custom-shadow`}
+        className={`bg-[#242424] border-2 border-white rounded-[24px] p-4 custom-shadow`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col items-center ">{children}</div>

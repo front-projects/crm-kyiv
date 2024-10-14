@@ -54,11 +54,11 @@ export default function DomainItem({ domain }: { domain: any }) {
           <span className="text-gray-400 text-lg ">Expiration: </span>
           {convertEpochToDate(domain.Expiration)}
         </div>
-        <Link href={`/menu/domain-aggregator/my-domains/${domain.Name}`}>
+        {/* <Link href={`/menu/domain-aggregator/my-domains/${domain.Name}`}>
           <Button variant="contained" color="secondary">
             Show more
           </Button>
-        </Link>
+        </Link> */}
       </div>
       {/* {show && (
         <Modal>

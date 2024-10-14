@@ -16,7 +16,7 @@ export default function CheckDomain() {
     false,
   );
   const [domain, setDomain] = useState('');
-  const [saleDomain,setSaleDomain] = useState<string>('.click');
+  const [saleDomain,setSaleDomain] = useState<string>('.xyz');
 
   const checkHandler = async (e: { preventDefault: () => void }) => {
     e.preventDefault();

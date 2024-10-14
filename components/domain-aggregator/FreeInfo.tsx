@@ -51,11 +51,12 @@ export default function FreeInfo({ domain }: { domain: string }) {
             )}
           </div>
           {status == 'question' && (
-            <Button onClick={() => submitHandler()}>Yes</Button>
+            <Button variant="contained" color="secondary" onClick={() => submitHandler()}>Yes</Button>
           )}
-          {status == 'loading' && <Button disabled>Buying..</Button>}
+          {status == 'loading' && <Button variant="contained" color="secondary">Buying..</Button>}
           {status == 'failed' && (
             <Button
+              variant="contained" color="secondary"
               onClick={() => {
                 setStatus('question');
                 router.back();
